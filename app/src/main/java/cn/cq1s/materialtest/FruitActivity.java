@@ -22,7 +22,7 @@ public static final String FRUIT_IMAGE_ID="fruit_image_id";
         setContentView(R.layout.activity_fruit);
         Intent intent=getIntent();
         String fruitName=intent.getStringExtra(FRUIT_NAME);
-        int fruitImaged=intent.getIntExtra(FRUIT_IMAGE_ID,0);
+        String fruitImaged=intent.getStringExtra(FRUIT_IMAGE_ID);
         Toolbar toolbar=findViewById(R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout=findViewById(R.id.collapsing_toolbar);
         ImageView fruitImageView=findViewById(R.id.fruit_image_view);
@@ -33,12 +33,18 @@ public static final String FRUIT_IMAGE_ID="fruit_image_id";
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         collapsingToolbarLayout.setTitle(fruitName);
-        Glide.with(this).load(fruitImaged).into(fruitImageView);
+        Glide.with(this).load("http://q.qlogo.cn/headimg_dl?dst_uin="+fruitImaged+"&spec=640&img_type=jpg").into(fruitImageView);
         String fruitContent=generateFruitContent(fruitName);
         fruitContentText.setText(fruitContent);
     }
     private String generateFruitContent(String fruitName){
         StringBuilder fruitContent=new StringBuilder();
+        if (fruitName.equals("刘楚豪")){
+         fruitContent.append("刘楚豪\nQQ：8843326\n年龄；20\n电话号码：18875004090\n\n520遍名字：\n");
+        }
+        if (fruitName.equals("肖杨川")){
+            fruitContent.append("肖杨川\nQQ：1033599459\n年龄；19\n电话号码：17723510016\n\n520遍名字：\n");
+        }
         for (int i=0;i<500;i++){
             fruitContent.append(fruitName);
         }

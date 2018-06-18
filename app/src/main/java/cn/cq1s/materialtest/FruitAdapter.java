@@ -18,6 +18,8 @@ import java.util.List;
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> {
     private Context mContext;
     private List<Fruit>mFruitList;
+    final String one="http://q.qlogo.cn/headimg_dl?dst_uin=";
+    final String two="&spec=640&img_type=jpg";
     static class ViewHolder extends RecyclerView.ViewHolder{
         CardView cardView;
         ImageView fruitImage;
@@ -59,7 +61,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Fruit fruit=mFruitList.get(position);
         holder.fruitName.setText(fruit.getName());
-        Glide.with(mContext).load(fruit.getImageId()).into(holder.fruitImage);
+        Glide.with(mContext).load(one+fruit.getImageId()+two).into(holder.fruitImage);
     }
 
     @Override

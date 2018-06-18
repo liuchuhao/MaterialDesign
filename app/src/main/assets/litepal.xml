@@ -1,0 +1,7 @@
+<litepal>
+    <dbname value="person_db"/>
+    <version value="1"/>
+    <list>
+        <mapping class="cn.cq1s.materialtest.db.PersonData"/>
+    </list>
+</litepal>
