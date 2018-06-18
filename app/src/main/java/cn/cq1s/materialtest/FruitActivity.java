@@ -3,10 +3,12 @@ package cn.cq1s.materialtest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +23,7 @@ public static final String FRUIT_IMAGE_ID="fruit_image_id";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fruit);
         Intent intent=getIntent();
-        String fruitName=intent.getStringExtra(FRUIT_NAME);
+        final String fruitName=intent.getStringExtra(FRUIT_NAME);
         String fruitImaged=intent.getStringExtra(FRUIT_IMAGE_ID);
         Toolbar toolbar=findViewById(R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout=findViewById(R.id.collapsing_toolbar);
@@ -36,6 +38,13 @@ public static final String FRUIT_IMAGE_ID="fruit_image_id";
         Glide.with(this).load("http://q.qlogo.cn/headimg_dl?dst_uin="+fruitImaged+"&spec=640&img_type=jpg").into(fruitImageView);
         String fruitContent=generateFruitContent(fruitName);
         fruitContentText.setText(fruitContent);
+        FloatingActionButton chatInit=findViewById(R.id.chat_init);
+        chatInit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ChatActivity.actionStart(FruitActivity.this,fruitName);
+            }
+        });
     }
     private String generateFruitContent(String fruitName){
         StringBuilder fruitContent=new StringBuilder();
